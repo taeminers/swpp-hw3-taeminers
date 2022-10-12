@@ -12,12 +12,12 @@ export const postSlice = createSlice({
     name : "post",
     initialState,
     reducers: {
-        addPost : (state, action: PayloadAction<{title : string ; content : string ; authorID : number}>) => {
+        addPost : (state, action: PayloadAction<{title : string ; content : string ; authorID : number; mykey : number}>) => {
             const newPost = {
                 title : action.payload.title,
                 content: action.payload.content,
                 authorID : action.payload.authorID,
-                mykey : state.posting.length
+                mykey : action.payload.mykey,
             };
 
             if (state.posting.find(e => e.title === newPost.title)) {

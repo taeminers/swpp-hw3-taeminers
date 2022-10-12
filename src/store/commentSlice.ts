@@ -20,7 +20,6 @@ export const commentSlice = createSlice({
                 theKey : state.comments.length,
                 authorID : action.payload.authorID,
             };
-            console.log('item.articleID', newComment.articleID);
             if (state.comments.find(e => e.content === newComment.content)) {
                 return;
             }

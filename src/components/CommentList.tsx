@@ -16,29 +16,27 @@ interface IProps {
 const CommentList = (props : IProps) => {
   const dispatch = useDispatch();
   const commentState = useSelector(selectComment);
-  const result = commentState.comments.filter(item => item.articleID === props.id)
-  console.log('props.id', props.id);
+  let result = commentState.comments.filter(item => item.articleID === props.id)
   const userState = useSelector(selectUser);
   const User = userState.selectedUser?.name!;
-
   useEffect(() => {
     getCommentsList().then(res => {
         if (!res) {
             return;
         }
         res.map((item: comment) => dispatch(addComment({content : item.content, authorID : item.author_id, articleID : item.article_id})))
+        result = commentState.comments.filter(item => item.articleID === props.id)      
+        
     });
 }, [])
 
-  useEffect(() => {
-      dispatch(getUser({targetId : props.id}));
-  }, [])
+
 
   return (
   <div>
-    {result.map ((comment, key)=>{
+    {result.map ((td, key)=>{
       return (
-          <Comment name = {User} content = {comment.content} authorID = {comment.authorID} articleID = {comment.articleID} theKey = {comment.theKey} key = {key}/>
+          <Comment content = {td.content} authorID = {td.authorID} articleID = {td.articleID} theKey = {td.theKey} key = {key}/>
       )
       })}
       

@@ -40,3 +40,5 @@ yarn start
 yarn start
 yarn run backend
 exit
+yarn run backend
+exit

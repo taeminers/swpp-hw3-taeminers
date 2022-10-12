@@ -27,7 +27,8 @@ function Login(){
     const loggedIn = true;
     const dispatch= useDispatch();
     const navigate = useNavigate();
-    const theUser = {name, email, password, loggedIn}
+    const myKey = 0;
+    const theUser = {name, email, password, loggedIn, myKey}
     // const postUser = useSelector(selectUser);
     const onClick = ()=>{
         if(email === 'swpp@snu.ac.kr' && password === 'iluvswpp'){

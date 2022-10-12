@@ -6,7 +6,6 @@ import {selectPost} from '../store/postSlice';
 import Article from './Article';
 import ArticleDetail from './ArticleDetail';
 import Logout from './Logout';
-import { selectUser, getUser } from '../store/userSlice';
 import { exit } from 'process';
 
 const CreateArticle = () => {
@@ -26,17 +25,17 @@ const CreateArticle = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const authorID = 0;
-    const thePost = {title, content, authorID};
+    const mykey = postState.posting.length;
+    const thePost = {title, content, authorID,mykey};
     let [previewMode, setpreviewMode] = useState(false)
-    const num = postState.posting.length;
 
     const postings = () =>{
         if(thePost.title !== '' && thePost.content !== ''){
             dispatch(addPost(thePost))
-            navigate("/articles/" + num)
+            navigate("/articles/" + mykey)
         } 
     }
-    
+
     const detailInCreate = () =>{
         setpreviewMode(true);
     }

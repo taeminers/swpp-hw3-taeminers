@@ -1,37 +1,37 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {useSelector} from 'react-redux';
 import {selectUser} from '../store/userSlice';
 import {useParams} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {getUser} from '../store/userSlice';
+import {getArticlesId, getUserInfo, getCommentsId, getUserList, getCommentsList} from '../api/Axios';
 
 export interface theComment {
-    content : string,
-    theKey: number,
-    authorID : number, //user.myKey
-    articleID : number //post.myKey
-    name : string;
+    content : string;
+    theKey: number;
+    authorID : number; 
+    articleID : number; 
 }
 
 const Comment = (props : theComment) => {
     const dispatch = useDispatch();
-    //const userState = useSelector(selectUser);
-   // dispatch(getUser({targetId : Number(props.authorID)}));
+    const [result , setResult] = useState(
+      null
+    );
     
-    //const User = userState.selectedUser?.name;
   return (
     <div>
      <br/>
       {props.content}
       <br/>
-      {props.name}
+      {result}
       <br/>
-      {props.name === 'taemin' && (
+      {
         <>
         <button id ='edit-comment-button'>edit comment</button>
         <button id ='delete-comment-button'>delete comment</button>
         </>
-        )}
+      }
     </div>
   )
 }

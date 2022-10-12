@@ -1,5 +1,9 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import {getArticlesId, getUserInfo} from '../api/Axios';
+import {addPost} from '../store/postSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addUser, getUser, selectUser } from '../store/userSlice';
 
 export interface theArticle {
     title : string;
@@ -9,19 +13,42 @@ export interface theArticle {
 }
 
 
+interface user {
+  name : string,
+  myKey : number, 
+  email : string,
+  password : string, 
+  loggedIn : boolean,
+}
+
 const Article = (props : theArticle) => {
+  const [result , setResult] = useState(
+    null
+  );
+
   const navigate = useNavigate();
   const thePath = '/articles/' + props.mykey;
+  const dispatch = useDispatch();
+  const userState = useSelector(selectUser);
+  
+  getUserInfo(props.authorID).then(res => {
+    if (!res) {
+        return;
+    }
+    setResult(res.name)
+});
+
+
   return (
     <div>
       <br/>
-     {props.authorID}
+     {props.mykey}
      <br/>
      <br/>
      <button onClick={()=>navigate(thePath)}>{props.title}</button>
      <br/>
      <br/>
-     {props.content} 
+     {result} 
      <br/>
      <br/>
     </div>

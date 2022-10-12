@@ -13,13 +13,16 @@ export const userSlice = createSlice({
     name : 'user',
     initialState,
     reducers:{
-        addUser : (state, action: PayloadAction<{name: string; email : string; password : string; loggedIn : boolean}>) =>{
+        addUser : (state, action: PayloadAction<{name: string; email : string; password : string; loggedIn : boolean; myKey : number}>) =>{
             const newUser = {
                 name : action.payload.name,
                 email : action.payload.email,
                 password : action.payload.password,
                 loggedIn : true,
-                myKey : state.userList.length,
+                myKey : action.payload.myKey,
+            }
+            if (state.userList.find(e => e.myKey === newUser.myKey)) {
+                return;
             }
             state.userList.push(newUser);
         },

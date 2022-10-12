@@ -5,8 +5,9 @@ export const getUserList = async () => {
     return result.data
 }
 
-export const getUserInfo = async () => {
-    const result = await axios.get('api/user/1');
+export const getUserInfo = async (id : Number) => {
+    const path = `api/user/${id}`
+    const result = await axios.get(path);
     return result.data
 }
 
@@ -16,7 +17,8 @@ export const getArticleList = async () => {
 }
 
 export const getArticlesId = async (id: Number) => {
-    const result = await axios.get(`api/articles/${id}`);
+    const path = `api/articles/${id}`
+    const result = await axios.get(path);
     return result.data
 }
 
