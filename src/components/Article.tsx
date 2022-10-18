@@ -13,32 +13,26 @@ export interface theArticle {
 }
 
 
-interface user {
-  name : string,
-  myKey : number, 
-  email : string,
-  password : string, 
-  loggedIn : boolean,
-}
-
 const Article = (props : theArticle) => {
   const [result , setResult] = useState(
-    null
+    ''
   );
-
   const navigate = useNavigate();
   const thePath = '/articles/' + props.mykey;
-  const dispatch = useDispatch();
   const userState = useSelector(selectUser);
-  
-  getUserInfo(props.authorID).then(res => {
-    if (!res) {
-        return;
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    if(props.authorID !== 0){
+      getUserInfo(props.authorID).then(res => {
+        setResult(res.name)
+     })
+    }else{
+      dispatch(getUser({targetId : 0}))
+      let name = userState.selectedUser?.name;
+      setResult(String(name))
     }
-    setResult(res.name)
-});
-
-
+  },[dispatch, props.authorID, userState.selectedUser])
+  
   return (
     <div>
       <br/>
@@ -48,7 +42,7 @@ const Article = (props : theArticle) => {
      <button onClick={()=>navigate(thePath)}>{props.title}</button>
      <br/>
      <br/>
-     {result} 
+     {result}
      <br/>
      <br/>
     </div>

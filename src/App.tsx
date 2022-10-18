@@ -1,7 +1,6 @@
 /* eslint-disable */
 
 import './App.css';
-import React , {useEffect} from "react";
 import Login from './components/Login';
 import{Routes, Route, Navigate, BrowserRouter as Router  } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,7 +10,6 @@ import CreateArticle from './components/CreateArticle';
 import ArticleDetail from './components/ArticleDetail';
 import {selectPost, addPost} from './store/postSlice';
 import ArticleEdit from './components/ArticleEdit';
-import { getArticleList } from './api/Axios';
 
 interface post {
   title: string,
@@ -22,7 +20,6 @@ interface post {
 function App() {
   const {loggedIn} = useSelector( (state : any) => state.logIn);
   const postState = useSelector(selectPost)
-  const dispatch = useDispatch();
   const thepath = '/articles/' + postState.posting.length;
 
   return (

@@ -1,15 +1,15 @@
 # Homework 3 - React Library & Testing
 
 #### **Due (These are hard deadlines)**
-- ##### **Feature Implementation Due: 10/6 (Thu) 18:00**
-- ##### **Testing Implementation Due: 10/13 (Thu) 18:00**
+- ##### **Feature Implementation Due: 10/12 (Wed) 12:00**
+- ##### **Testing Implementation Due: 10/19 (Wed) 12:00**
 
 **ANY KIND OF CHEATING IS NOT ALLOWED FOR THE HOMEWORK. Please be aware that we run software plagiarism detection tools.**
 
 You will implement a front-end for a blogging service using React library. This is an **individual** assignment.
 This assignment will help you
 
-- Make a simple React (version 18.2.0) application before diving into your projects
+- Make a simple React application before diving into your projects
 - Make test suites for the React application you implement
 - Let you try out stuff we have learned in our practice sessions
 
@@ -173,11 +173,11 @@ To run the mocked json server in Windows environment, please change the followin
 
 From:
 ``` json
-"backend": "cp api/db.json api/_db.json && json-server --watch api/_db.json --routes api/routes.json --port 8000"
+"backend": "cp api/db.json api/_db.json && json-server --watch api/_db.json --routes api/routes.json --port 8000 --host 0.0.0.0"
 ```
 To:
 ``` json
-"backend": "copy /y api￦￦db.json api￦￦_db.json && json-server --watch api￦￦_db.json --routes api￦￦routes.json --port 8000"
+"backend": "copy /y api￦￦db.json api￦￦_db.json && json-server --watch api￦￦_db.json --routes api￦￦routes.json --port 8000 --host 0.0.0.0"
 ```
 
 To run the server, just type following command at the root of the project
@@ -222,7 +222,7 @@ We will test your code after conducting `yarn install`, so you can import other 
 
 ## Grading
 
-This assignment is composed of a total of 80 points. We will score your feature implementation (**lastest commit before 7 October 6:00 PM**) with our e2e test code, having 55 test cases that reflects the requirements given above. You will get 1 point for each passed test case. Also, we will check your unit test coverage (**latest commit before 14 October 6:00 PM**), which is 25 points in total. Grading details are shown below.
+This assignment is composed of a total of 80 points. We will score your feature implementation (**lastest commit before 12 October 12:00 PM**) with our e2e test code, having 55 test cases that reflects the requirements given above. You will get 1 point for each passed test case. Also, we will check your unit test coverage (**latest commit before 19 October 12:00 PM**), which is 25 points in total. Grading details are shown below.
 
 ### Feature Implementation Score
 The e2e test consist of cases about:
@@ -265,8 +265,8 @@ Finally, since you have to implement many features, start early!
 ## Submission
 
 **Due: (These are hard deadlines)**
-- **Feature Implementation Due: 10/6 (Thu) 18:00**
-- **Testing Implementation Due: 10/13 (Thu) 18:00**
+- **Feature Implementation Due: 10/12 (Wed) 12:00**
+- **Testing Implementation Due: 10/19 (Wed) 12:00**
 
 We will check the snapshot of the *main* branch of your Github repository at the deadline and grade it.
 

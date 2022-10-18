@@ -49,7 +49,7 @@ return (
       <h1 id = 'article- title'>{postState.selectedPost?.title}</h1>
       <h1 id = 'article-content'>{postState.selectedPost?.content}</h1>
       <br/>
-      <CommentList id = {articleID}/>
+      <CommentList id = {Number(id)}/>
       <br/>
       <button id='edit-article-button' onClick = {()=> navigate(thePath)}>edit article</button>
       <button id='delete-article-button'>delete article</button>

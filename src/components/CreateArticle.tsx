@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector } from 'react-redux';
-import {addPost, posts, getPost} from '../store/postSlice';
+import {addPost, posts, getPost, postArticle} from '../store/postSlice';
 import {selectPost} from '../store/postSlice';
 import Article from './Article';
 import ArticleDetail from './ArticleDetail';
 import Logout from './Logout';
 import { exit } from 'process';
+import { AppDispatch } from '../store/store';
 
 const CreateArticle = () => {
     const [inputs, setInputs] = useState({
@@ -24,18 +25,18 @@ const CreateArticle = () => {
     const postState = useSelector(selectPost);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const dispatches = useDispatch<AppDispatch>();
     const authorID = 0;
-    const mykey = postState.posting.length;
-    const thePost = {title, content, authorID,mykey};
+    const mykey = postState.posting.length+20;
+    const thePost = {title, content, authorID, mykey};
     let [previewMode, setpreviewMode] = useState(false)
-
-    const postings = () =>{
+    const postings = async () =>{
         if(thePost.title !== '' && thePost.content !== ''){
-            dispatch(addPost(thePost))
+            dispatch(addPost(thePost));
+            //const result = await dispatches(postArticle(thePost));
             navigate("/articles/" + mykey)
         } 
     }
-
     const detailInCreate = () =>{
         setpreviewMode(true);
     }

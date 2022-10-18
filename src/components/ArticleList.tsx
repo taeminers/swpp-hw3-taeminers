@@ -2,12 +2,13 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {logIn, logOut} from "../store/loginDetail";
 import {useNavigate} from 'react-router-dom';
-import {selectPost, addPost} from '../store/postSlice';
+import {selectPost, addPost, postArticle} from '../store/postSlice';
 import Article from './Article';
 import Logout from './Logout';
-import { getArticleList, getUserList } from '../api/Axios';
+import { getArticleList, getUserList, getUserInfo } from '../api/Axios';
 import { useEffect } from 'react';
-import { addUser, selectUser } from '../store/userSlice';
+import { addUser, selectUser, fetchUsers } from '../store/userSlice';
+import {AppDispatch} from '../store/store';
 
 interface post {
     title: string,
@@ -26,26 +27,26 @@ interface user {
 function ArticleList(){    
     const postState = useSelector(selectPost)
     const dispatch = useDispatch();
+    const dispatches = useDispatch<AppDispatch>()
     const navigate = useNavigate();
-    
+    const userState = useSelector(selectUser)
     useEffect(() => {
         getArticleList().then(res => {
             if (!res) {
                 return;
             }
+            console.log(res);
             res.map((item: post) => dispatch(addPost({title: item.title, content: item.content, authorID: item.author_id, mykey : item.id})))
         });
-    }, [])
+    }, [postState.posting, postState])
     useEffect(() => {
         getUserList().then(res => {
             if (!res) {
                 return;
             }
-            res.map((item: user) => dispatch(addUser({name: item.name , email : item.email, myKey : item.id, loggedIn : item.loggedIn, password : item.password})))
+            res.map((item: user) => dispatch(addUser({name: item.name , email : item.email, id : item.id, loggedIn : item.loggedIn, password : item.password})))
         });
-    }, [])
-
-
+    }, [userState.userList])
     return(
         <div>
             {postState.posting.map((td, key)=>{

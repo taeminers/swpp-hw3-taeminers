@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import {Link, Route, useNavigate} from 'react-router-dom';
 import ArticleList from './ArticleList';
 import {logIn, logOut} from "../store/loginDetail";
-import {addUser, selectUser} from '../store/userSlice';
+import {addUser, selectUser, postUser} from '../store/userSlice';
+import {getUserList} from '../api/Axios';
+import { AppDispatch } from '../store/store';
 
 function Login(){
     const [inputs, setInputs] = useState({ 
@@ -12,7 +14,6 @@ function Login(){
         password : ''
     });
 
-    
     const { email, password} = inputs;
 
     const onChange = (event : any) =>{
@@ -26,11 +27,11 @@ function Login(){
     const name = 'taemin';
     const loggedIn = true;
     const dispatch= useDispatch();
+    const dispatches = useDispatch<AppDispatch>();
     const navigate = useNavigate();
-    const myKey = 0;
-    const theUser = {name, email, password, loggedIn, myKey}
-    // const postUser = useSelector(selectUser);
-    const onClick = ()=>{
+    const id = 0;
+    const theUser = {name, email, password, id, loggedIn}
+    const onClick = async ()=>{
         if(email === 'swpp@snu.ac.kr' && password === 'iluvswpp'){
             dispatch(logIn());
             dispatch(addUser(theUser));
@@ -40,7 +41,6 @@ function Login(){
         }
     };
 
-    
     return(
         <div>
             <input name = "email" id= "email-input" onChange = {onChange} value = {email}/>

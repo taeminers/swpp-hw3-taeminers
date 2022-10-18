@@ -17,8 +17,6 @@ const CommentList = (props : IProps) => {
   const dispatch = useDispatch();
   const commentState = useSelector(selectComment);
   let result = commentState.comments.filter(item => item.articleID === props.id)
-  const userState = useSelector(selectUser);
-  const User = userState.selectedUser?.name!;
   useEffect(() => {
     getCommentsList().then(res => {
         if (!res) {
@@ -26,11 +24,8 @@ const CommentList = (props : IProps) => {
         }
         res.map((item: comment) => dispatch(addComment({content : item.content, authorID : item.author_id, articleID : item.article_id})))
         result = commentState.comments.filter(item => item.articleID === props.id)      
-        
     });
-}, [])
-
-
+}, [commentState.comments])
 
   return (
   <div>
