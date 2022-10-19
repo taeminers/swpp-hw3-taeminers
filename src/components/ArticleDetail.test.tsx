@@ -51,7 +51,7 @@ describe("<ArticleDetail />", ()=>{
                     title : "testing", mykey : 3, content: "testing content", authorID: 0,
                 },
                 commentData:{
-                    content : "comment test", theKey : 0, authorID : 0, articleID : 0,
+                    content : "comment test", theKey : 0, authorID : 0, articleID : 3,
                 },
                 userData:{
                     name : "user test", id : 0, email : "test email", password: "password", loggedIn : true
@@ -61,6 +61,7 @@ describe("<ArticleDetail />", ()=>{
         renderArticle();
         await screen.findByText("testing");
         await screen.findByText("testing content");
+        await screen.findByText("0")
     });
     /*it("should not render if there is no article", async()=>{
         renderArticle();
